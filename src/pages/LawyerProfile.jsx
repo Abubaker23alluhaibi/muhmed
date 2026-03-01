@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Scale, MapPin, Briefcase, ChevronLeft, Gavel, Phone, Mail, MapPinned } from 'lucide-react';
+import { useState } from 'react';
+import { Scale, MapPin, Briefcase, ChevronLeft, Gavel, Phone, Mail, MapPinned, Menu, X } from 'lucide-react';
 
 const PHONE_RAW = '07811304800';
 const PHONE_INTL = '9647811304800';
@@ -39,6 +40,9 @@ function IconFacebook({ className = 'w-5 h-5' }) {
 }
 
 export default function LawyerProfile() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <div className="min-h-screen bg-[#F9F9F9] text-[#2C2C2C] font-sans transition-colors duration-300" dir="rtl">
       {/* استيراد الخطوط من جوجل */}
@@ -61,16 +65,40 @@ export default function LawyerProfile() {
             <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white/90 flex-shrink-0 mt-0.5 sm:mt-1"></span>
           </div>
           <nav className="hidden md:flex items-center gap-12 text-sm font-medium tracking-wide text-white/90 flex-shrink-0">
-            <a className="text-white hover:text-white hover:opacity-90 transition-opacity" href="#">عن المكتب</a>
-            <a className="text-white hover:text-white hover:opacity-90 transition-opacity" href="#">مجالات التخصص</a>
+            <a className="text-white hover:text-white hover:opacity-90 transition-opacity" href="#about">عن المكتب</a>
+            <a className="text-white hover:text-white hover:opacity-90 transition-opacity" href="#specializations">مجالات التخصص</a>
             <a className="text-white hover:text-white hover:opacity-90 transition-opacity" href="#contact">اتصل بنا</a>
+          </nav>
+
+          {/* زر الهمبرغر للموبايل */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden flex-shrink-0 p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+            aria-label={menuOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* قائمة الموبايل (تظهر عند الضغط على الهمبرغر) */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
+            menuOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <nav className="flex flex-col gap-0 border-t border-white/10 bg-[#9a7b5a] px-4 py-3">
+            <a href="#about" onClick={closeMenu} className="py-3 text-white font-medium border-b border-white/10 hover:bg-white/10 rounded px-2 -mx-2">عن المكتب</a>
+            <a href="#specializations" onClick={closeMenu} className="py-3 text-white font-medium border-b border-white/10 hover:bg-white/10 rounded px-2 -mx-2">مجالات التخصص</a>
+            <a href="#contact" onClick={closeMenu} className="py-3 text-white font-medium hover:bg-white/10 rounded px-2 -mx-2">اتصل بنا</a>
           </nav>
         </div>
       </header>
 
       <main>
         {/* Hero Section - قسم المحامي الرئيسي */}
-        <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+        <section id="about" className="relative min-h-[85vh] flex items-center overflow-hidden scroll-mt-14 sm:scroll-mt-16 md:scroll-mt-24">
           <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center py-20">
             
             {/* صورة المحامي */}
@@ -172,7 +200,7 @@ export default function LawyerProfile() {
         </section>
 
         {/* قسم التخصصات */}
-        <section className="py-32 bg-white text-right">
+        <section id="specializations" className="py-32 bg-white text-right scroll-mt-14 sm:scroll-mt-16 md:scroll-mt-24">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col md:flex-row-reverse justify-between items-end mb-20 gap-8">
               <div className="max-w-2xl">
