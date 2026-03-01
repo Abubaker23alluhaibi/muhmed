@@ -216,7 +216,7 @@ export default function LawyerProfile() {
                 <div>
                   <p className="font-bold text-[#2C2C2C] mb-1">العنوان</p>
                   <p className="text-[#2C2C2C]/80">بغداد - حي الخضراء - مجمع الخضراء بلازا</p>
-                  <a href="https://maps.app.goo.gl/generic_link" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-3 text-[#A68966] font-bold hover:underline">
+                  <a href="https://maps.app.goo.gl/xzKqzZKBxgYBFX9F9?g_st=ic" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-3 text-[#A68966] font-bold hover:underline">
                     <MapPinned className="w-4 h-4" />
                     موقعنا على الخريطة
                   </a>
