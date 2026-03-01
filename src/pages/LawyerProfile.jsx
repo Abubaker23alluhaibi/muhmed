@@ -47,17 +47,20 @@ export default function LawyerProfile() {
           @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&family=Noto+Serif+Arabic:wght@100..900&display=swap');
           .font-serif-ar { font-family: 'Noto Serif Arabic', serif; }
           body { font-family: 'Noto Kufi Arabic', sans-serif; }
+          /* منع تقطع الكلمات العربية على الموبايل */
+          .tracking-ar-mobile { letter-spacing: 0.05em; }
+          @media (min-width: 768px) { .tracking-ar-mobile { letter-spacing: 0.2em; } }
         `}
       </style>
 
       {/* Header */}
       <header className="sticky top-0 z-50 w-full bg-[#A68966] border-b border-white/10 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-base md:text-xl font-serif-ar font-bold tracking-tight text-white leading-tight">نرحب بكم في مكتب المستشار القانوني ياسر النعيمي</span>
-            <span className="w-2 h-2 rounded-full bg-white/90 mt-1 flex-shrink-0"></span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 md:h-24 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="text-xs sm:text-sm md:text-xl font-serif-ar font-bold tracking-tight text-white leading-tight line-clamp-2">نرحب بكم في مكتب المستشار القانوني ياسر النعيمي</span>
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white/90 flex-shrink-0 mt-0.5 sm:mt-1"></span>
           </div>
-          <nav className="hidden md:flex items-center gap-12 text-sm font-medium tracking-wide text-white/90">
+          <nav className="hidden md:flex items-center gap-12 text-sm font-medium tracking-wide text-white/90 flex-shrink-0">
             <a className="text-white hover:text-white hover:opacity-90 transition-opacity" href="#">عن المكتب</a>
             <a className="text-white hover:text-white hover:opacity-90 transition-opacity" href="#">مجالات التخصص</a>
             <a className="text-white hover:text-white hover:opacity-90 transition-opacity" href="#contact">اتصل بنا</a>
@@ -79,10 +82,14 @@ export default function LawyerProfile() {
                   className="w-full h-full object-cover object-left-top scale-110 origin-top-left"
                   onError={(e) => {
                     e.target.style.display = 'none'
-                    e.target.nextElementSibling?.classList.remove('hidden')
+                    const fallback = e.target.nextElementSibling
+                    if (fallback) {
+                      fallback.classList.remove('hidden')
+                      fallback.classList.add('flex')
+                    }
                   }}
                 />
-                <div className="hidden w-full h-full flex items-center justify-center bg-[#2C2C2C]/5">
+                <div className="hidden w-full h-full items-center justify-center bg-[#2C2C2C]/5">
                   <Scale className="w-32 h-32 text-[#A68966] opacity-20" />
                 </div>
               </div>
@@ -93,12 +100,12 @@ export default function LawyerProfile() {
             {/* تفاصيل المحامي */}
             <div className="space-y-10 order-1 md:order-2 text-right">
               <div className="space-y-6">
-                <h2 className="text-[#A68966] font-bold tracking-[0.2em] text-sm uppercase">محامي قضايا دولة وقضايا تجارية</h2>
-                <h1 className="text-5xl md:text-7xl font-serif-ar text-[#2C2C2C] leading-[1.2]">
+                <h2 className="text-[#A68966] font-bold tracking-ar-mobile text-sm">محامي قضايا دولة وقضايا تجارية</h2>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif-ar text-[#2C2C2C] leading-[1.2]">
                   ياسر النعيمي <br/>
-                  <span className="text-3xl md:text-4xl opacity-80 font-normal tracking-normal">المستشار القانوني الرئيسي</span>
+                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl opacity-80 font-normal tracking-normal">المستشار القانوني الرئيسي</span>
                 </h1>
-                <p className="max-w-lg text-xl text-[#2C2C2C]/70 font-light leading-relaxed">
+                <p className="max-w-lg text-base sm:text-lg md:text-xl text-[#2C2C2C]/70 font-light leading-relaxed">
                   تمثيل قانوني موثوق وسجل حافل بالتميز. متخصص في تمثيل الدولة في الدعاوى والمنازعات الحكومية، وفي القضايا التجارية والتحكيم، مع حماية مصالح موكليك بدقة واحترافية.
                 </p>
               </div>
@@ -130,11 +137,11 @@ export default function LawyerProfile() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-5 pt-4">
-                <Link to="/register" className="bg-[#A68966] text-white px-10 py-5 rounded-lg font-bold text-lg hover:bg-[#8e7456] transition-all shadow-lg flex items-center justify-center gap-3">
+                <Link to="/register" className="bg-[#A68966] text-white px-6 sm:px-10 py-4 sm:py-5 rounded-lg font-bold text-base sm:text-lg hover:bg-[#8e7456] transition-all shadow-lg flex items-center justify-center gap-2 sm:gap-3">
                   انقر هنا لتعرف تكلفة الشحن
                   <ChevronLeft className="w-6 h-6" />
                 </Link>
-                <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="border border-[#2C2C2C]/20 px-10 py-5 rounded-lg font-bold text-lg hover:bg-[#2C2C2C] hover:text-white transition-all text-center">
+                <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="border border-[#2C2C2C]/20 px-6 sm:px-10 py-4 sm:py-5 rounded-lg font-bold text-base sm:text-lg hover:bg-[#2C2C2C] hover:text-white transition-all text-center whitespace-nowrap">
                   تواصل معنا
                 </a>
               </div>
@@ -169,7 +176,7 @@ export default function LawyerProfile() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col md:flex-row-reverse justify-between items-end mb-20 gap-8">
               <div className="max-w-2xl">
-                <h2 className="text-[#A68966] font-bold tracking-[0.2em] text-sm mb-4">مجالات التخصص</h2>
+                <h2 className="text-[#A68966] font-bold tracking-ar-mobile text-sm mb-4">مجالات التخصص</h2>
                 <h3 className="text-4xl md:text-6xl font-serif-ar text-[#2C2C2C] leading-tight">الدقة والاحترافية في قضايا الدولة والتجارة</h3>
               </div>
             </div>
@@ -206,9 +213,9 @@ export default function LawyerProfile() {
         </section>
 
         {/* قسم اتصل بنا */}
-        <section id="contact" className="py-20 bg-[#F9F9F9] text-right scroll-mt-24">
+        <section id="contact" className="py-20 bg-[#F9F9F9] text-right scroll-mt-16 sm:scroll-mt-20 md:scroll-mt-24">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-[#A68966] font-bold tracking-[0.2em] text-sm mb-4">تواصل معنا</h2>
+            <h2 className="text-[#A68966] font-bold tracking-ar-mobile text-sm mb-4">تواصل معنا</h2>
             <h3 className="text-3xl md:text-4xl font-serif-ar text-[#2C2C2C] mb-10">اتصل بنا</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="flex items-start gap-4 p-6 bg-white rounded-xl border border-[#A68966]/10">
