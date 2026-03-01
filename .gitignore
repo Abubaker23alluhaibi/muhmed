@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+*.log
+.DS_Store
+# بيانات الخادم (لا تُرفع للمستودع)
+server/data/bookings.json
+server/data/contacts.json
