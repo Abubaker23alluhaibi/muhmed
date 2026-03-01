@@ -123,7 +123,7 @@ export default function LawyerProfile() {
                   <Mail className="w-5 h-5 text-[#A68966] flex-shrink-0" />
                   <a href="mailto:yaser.alnuaimiy2020@gmail.com" className="hover:text-[#A68966] transition-colors">yaser.alnuaimiy2020@gmail.com</a>
                 </div>
-                <a href="https://maps.app.goo.gl/generic_link" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-2 text-[#A68966] font-bold hover:underline">
+                <a href="https://maps.app.goo.gl/xzKqzZKBxgYBFX9F9?g_st=ick" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-2 text-[#A68966] font-bold hover:underline">
                   <MapPinned className="w-5 h-5" />
                   موقعنا على الخريطة
                 </a>
